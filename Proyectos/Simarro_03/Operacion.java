@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 public abstract class Operacion {
 
+	private static int contId = 0;
+	
 	private String nombre;
 	private String id;
 	private ArrayList<Double> listadoOperandos;
 	private double resultado;
+	private boolean flag;
 	
-	public Operacion(String nombre, String id) {
+	public Operacion(String nombre) {
 		this.nombre = nombre;
-		this.id = id;
+		this.id = contId++ + "";
 		this.listadoOperandos = new ArrayList<Double>();
 	}
 	
@@ -39,7 +42,13 @@ public abstract class Operacion {
 	public void setResultado(double resultado) {
 		this.resultado = resultado;
 	}
-	
+	public boolean isFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
 	abstract void registrarOperando(double nuevoOperando);
 	abstract double realizarOperación();
 	abstract int realizarOperaciónRedondeada();
